@@ -1,6 +1,6 @@
 # Predicting Indoor Radon Levels Using Machine Learning Algorithms
 
-Research Paper is available [HERE]().
+Research Paper is available [HERE](Paper.pdf).
 
 ## Authors
 
@@ -27,11 +27,11 @@ The dataset used in our experiments is publicaly available [Here](https://beta.g
 > We are expecting dataset offered by researchers from Babes-Bolyai University, Environmental Science and Engineering Faculty, who recorded and measured radon levels periodically in multiple locations. Our future work will be based on this real-life set.
 ## Contents
 
-### Deep Neural Netorks - DNN.py
-### Support Vector Machines - SVM.py
-### Random Forests - RF.py
+### Deep Neural Netorks - [DNN.py](DNN.py)
+### Support Vector Machines - [SVM.py](SVM.py)
+### Random Forests - [RF.py](RF.py)
 
->Further explanations about how these algorithms were used are presented in the [paper]().
+>Further explanations about how these algorithms were used are presented in the [paper](Paper.pdf).
 
 ## Results
 
