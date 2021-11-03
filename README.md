@@ -22,7 +22,7 @@ The aim is to outline the regions where there may exist a risk of high indoor ra
 
 ## Dataset
 
-The dataset used in our experiments is publicaly available [Here](https://beta.geohive.ie/datasets/42d9ccbfacc349f1b1edea8e6369ed7a_1/explore).
+The dataset used in our experiments is publicly available [Here](https://beta.geohive.ie/datasets/42d9ccbfacc349f1b1edea8e6369ed7a_1/explore).
 
 > We are expecting dataset offered by researchers from Babes-Bolyai University, Environmental Science and Engineering Faculty, who recorded and measured radon levels periodically in multiple locations. Our future work will be based on this real-life set.
 ## Contents
