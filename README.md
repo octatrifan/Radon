@@ -11,8 +11,8 @@ Research Paper is available [HERE](Paper.pdf).
 |Anastasia Susciuc         |`susciuc.anastasia@gmail.com`|
 
 > Computer Science Students 
- Babes-Bolyai University, Cluj-Napoca, Romania
-  Research  Institute on  Artificial Intelligence, Virtual Reality and Robotics
+> Babes-Bolyai University, Cluj-Napoca, Romania
+> Research  Institute on  Artificial Intelligence, Virtual Reality and Robotics
 
 ## Abstract
 
