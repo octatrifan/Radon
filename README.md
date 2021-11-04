@@ -10,9 +10,9 @@ Research Paper is available [HERE](Paper.pdf).
 |Daniel Todașcă          |`todasca7daniel@gmail.com`    |
 |Anastasia Susciuc         |`susciuc.anastasia@gmail.com`|
 
-> Computer Science Students 
-> Babes-Bolyai University, Cluj-Napoca, Romania
-> Research  Institute on  Artificial Intelligence, Virtual Reality and Robotics
+> Computer Science Students   
+> Babes-Bolyai University, Cluj-Napoca, Romania   
+> Research  Institute on  Artificial Intelligence, Virtual Reality and Robotics   
 
 ## Abstract
 
