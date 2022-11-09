@@ -8,6 +8,7 @@ DIR = [
     "D:/Radon/joined_homes",
     "D:/Radon/joined_homes_less",
     "D:/Radon/proc_time_homes",
+    "D:/Radon/proc_time_homes_less",
 ]
 
 

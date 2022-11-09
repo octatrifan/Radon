@@ -6,7 +6,7 @@ DAYS_BEFORE = 5
 
 
 def get_uids():
-    return [filename.replace(".csv", "").replace("../homes\\radon_", "") for filename in glob.glob("../homes/radon_*")]
+    return [filename.replace(".csv", "").replace("../proc_time_homes\\", "") for filename in glob.glob("../proc_time_homes/*")]
 
 
 def avg(arr):
@@ -62,6 +62,25 @@ def drop_big_rows(csv_name):
     df2.to_csv(output_path, index=False)
 
 
+def drop_month_random(csv_name, idx, total):
+    discard_month = idx / total
+    discard_month = 1 + int(discard_month * 12)
+    csv_path = "../proc_time_homes/" + csv_name
+    output_path = "../proc_time_homes_less/" + csv_name
+    df = pandas.read_csv(csv_path, header=0)
+    df2 = df.copy(deep=True)
+    df2.drop(df2.index, inplace=True)
+    for idx, row in df.iterrows():
+        radon_month = row['month']
+        if radon_month == discard_month or radon_month == discard_month % 12 + 1:
+            df2.loc[len(df2)] = row
+        if radon_month > discard_month+1:
+            break
+
+    print(output_path)
+    df2.to_csv(output_path, index=False)
+
+
 skip_idx = 0
 uid_idx = 0
 for uid in get_uids():
@@ -69,5 +88,5 @@ for uid in get_uids():
     if uid_idx < skip_idx:
         continue
     csv = uid + ".csv"
-    drop_big_rows(csv)
+    drop_month_random(csv, uid_idx-1, len(get_uids()))
     print("done: ", csv)

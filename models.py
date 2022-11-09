@@ -8,20 +8,16 @@ from constants_rnn import *
 def get_rnn_model():
     model = Sequential()
 
-    model.add(LSTM(5, return_sequences=False, dropout=0.1, recurrent_dropout=0.1))  # take 5 consecutive inputs
-
+    model.add(LayerNormalization())
     model.add(BatchNormalization())
-    model.add(Dropout(0.2))
+    model.add(LSTM(TIMESTAMPS, return_sequences=False, dropout=0.1, recurrent_dropout=0.1))  # take 5 consecutive inputs
+
     model.add(BatchNormalization())
     model.add(Dense(40, activation='relu'))
 
     model.add(BatchNormalization())
-    model.add(Dropout(0.42))
-    model.add(BatchNormalization())
-    model.add(Dense(16, activation='relu'))
+    model.add(Dense(16, activation='sigmoid'))
 
-    model.add(BatchNormalization())
-    model.add(Dropout(0.2))
     model.add(BatchNormalization())
     model.add(Dense(1, activation='relu'))
 
