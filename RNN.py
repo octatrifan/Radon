@@ -1,11 +1,8 @@
 import numpy as np
 import tensorflow as tf
-import numpy
-from models import get_rnn_model
+from models import get_rnn_model, get_deep_rnn_model
 from constants_rnn import *
 
-
-numpy.random.seed(rand_seed)
 
 n_uids = len(uids)
 np.random.shuffle(uids)
@@ -48,18 +45,18 @@ def generate_data_from_prefetch(prefetch_dataset):
     generate_data_from_prefetch.cnt = 0
     for element in prefetch_dataset:
         inputs = np.asarray([
-            np.asarray([element[0][COL].numpy()]).astype('int32') for COL in COLUMN_NAMES
-        ]).astype('int32')
+            np.asarray([element[0][COL].numpy()]).astype('float32') for COL in COLUMN_NAMES
+        ]).astype('float32')
         target = np.asarray([
-            np.asarray([element[1].numpy()]).astype('int32')
-        ]).astype('int32')
+            np.asarray([element[1].numpy()]).astype('float32')
+        ]).astype('float32')
 
         if target.size != BATCH_SIZE * TIMESTAMPS:
             continue
 
         inputs = np.reshape(inputs, (BATCH_SIZE, TIMESTAMPS, len(COLUMN_NAMES)))
         target = np.reshape(target, (BATCH_SIZE, TIMESTAMPS, 1))
-        target = np.asarray([int(np.average(batch)) for batch in target]).astype('int32')
+        target = np.asarray([int(np.average(batch)) for batch in target]).astype('float32')
 
         if input_copy is None:
             input_copy = inputs
@@ -73,8 +70,8 @@ def generate_data_from_prefetch(prefetch_dataset):
         yield [inputs, target]
 
 
-train_dataset = get_dataset(train_uids, EPOCHS)
-val_dataset = get_dataset(validate_uids, EPOCHS)
+train_dataset = get_dataset(train_uids, EPOCHS*2)
+val_dataset = get_dataset(validate_uids, EPOCHS*2)
 test_dataset = get_dataset(test_uids, 1)
 
 # check types of column
@@ -89,7 +86,7 @@ print("Steps:", STEPS_PER_EPOCH)
 print("Time:", TIMESTAMPS)
 
 # define the keras model
-model = get_rnn_model()
+model = get_deep_rnn_model()
 print(model.layers)
 
 model.compile(optimizer='adam', loss='MeanAbsoluteError', metrics=["mae"])
@@ -105,7 +102,9 @@ hist = model.fit(
     validation_freq=1,
     validation_steps=STEPS_PER_EPOCH * val_percent,
     validation_data=generate_data_from_prefetch(val_dataset),
-    callbacks=[MAEThresholdCallback(150, 20)],
+    callbacks=[MAEThresholdCallback(120, 20)],
+    shuffle=False,
+    use_multiprocessing=False,
 )
 
 print("predict")
@@ -115,3 +114,5 @@ print(model.predict(input_copy))
 print("output")
 score = model.evaluate(generate_data_from_prefetch(test_dataset), verbose=VERBOSE)
 print("Score on test data: ", score)
+
+model.save("last_rnn")
