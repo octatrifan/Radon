@@ -1,18 +1,21 @@
 import glob
 
-rand_seed = 20
+TIMESTAMPS = 5
+rand_seed = 85
 VERBOSE = 2
-BATCH_SIZE = 128    # powers of 2
-STEPS_PER_EPOCH = 48149937 // BATCH_SIZE
-EPOCHS = 100    # training epochs
+BATCH_SIZE = 64    # powers of 2
+# STEPS_PER_EPOCH = 4293067 // (BATCH_SIZE * TIMESTAMPS)
+STEPS_PER_EPOCH = 48149937 // (BATCH_SIZE * TIMESTAMPS)
+EPOCHS = 500    # training epochs
 #  TODO: change for local env
 PATH_TO_DATASET = "D:/Radon/proc_time_homes/"
+# PATH_TO_DATASET = "D:/Radon/proc_time_homes/"
 COLUMN_NAMES = [
     # 'year',
-    'month',
+    # 'month',
     # 'day',
     # 'ord',    # combination of month and day
-    'hour',     # integer values
+    # 'hour',     # integer values
     # 'val1h',  # radon
     'minute',
     'temp',
